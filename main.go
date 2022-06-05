@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"eventloop/engine"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -28,18 +30,15 @@ func main() {
 	loop := new(engine.Loop)
 	loop.Start()
 
-	// if input, err := os.Open("test.txt"); err == nil {
-	// 	defer input.Close()
-	// 	scanner := bufio.NewScanner(input)
-	// 	for scanner.Scan() {
-	// 		commandLine := scanner.Text()
-	// 		cmd := parse(commandLine)
-	// 		loop.Post(cmd)
-	// 	}
-	// }
-
-	cmd := parse("add 1 9")
-	loop.Post(cmd)
+	if input, err := os.Open("test.txt"); err == nil {
+		defer input.Close()
+		scanner := bufio.NewScanner(input)
+		for scanner.Scan() {
+			commandLine := scanner.Text()
+			cmd := parse(commandLine)
+			loop.Post(cmd)
+		}
+	}
 
 	loop.AwaitFinish()
 }
