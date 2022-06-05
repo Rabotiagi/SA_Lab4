@@ -17,6 +17,17 @@ type stopCommand struct{}
 
 func (pc PrintCommand) Execute(h Handler) {
 	fmt.Println(string(pc))
+
+	// ONLY FOR RUNNING TESTS
+	//f, err := os.OpenFile("results.txt", os.O_APPEND|os.O_WRONLY, 0644)
+	//if err != nil {
+	//	f, _ = os.Create("results.txt")
+	//	f.WriteString(string(pc))
+	//} else {
+	//	f.WriteString("\n" + string(pc))
+	//}
+	//
+	//f.Close()
 }
 
 func (ac AddCommand) Execute(h Handler) {
